@@ -21,11 +21,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Value("${spring.ldap.base.dn}")
 	private String ldapBaseDn;
 	
+	private static final String[] AUTH_WITELIST= {
+			"/swagger-resources/**",
+			"/swagger-ui.html",
+			"/v2/api-docs",
+			"/webjars/**"
+			
+	};
+	
+	
+	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		  http.csrf().disable();
 		  http
 			.authorizeRequests()
+			    .antMatchers( AUTH_WITELIST).permitAll()
 				.anyRequest().fullyAuthenticated()
 				.and()
 			.formLogin();
