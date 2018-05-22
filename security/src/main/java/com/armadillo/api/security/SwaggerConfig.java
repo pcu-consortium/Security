@@ -20,14 +20,14 @@ public class SwaggerConfig {
     public Docket api() {                
         return new Docket(DocumentationType.SWAGGER_2)          
           .select()                                       
-          .apis(RequestHandlerSelectors.basePackage("com.armadillo.api.restapi"))
+          .apis(RequestHandlerSelectors.basePackage("com.armadillo.api.security"))
           .paths(PathSelectors.any())                     
           .build().apiInfo(apiInfo());
     }
     private ApiInfo apiInfo() {
         return new ApiInfo(
           "ARMADILLO REST API", 
-          "Some custom description of API.", 
+          "API for User Management and ACL security.", 
           "API PCU Project", 
           "Terms of service", 
           new Contact("Rania Soussi", "www.armadillo.fr", "rania@armadillo.fr"), 
