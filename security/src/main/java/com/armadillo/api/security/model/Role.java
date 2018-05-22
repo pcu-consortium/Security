@@ -2,17 +2,19 @@ package com.armadillo.api.security.model;
 
 import java.util.Collection;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
 
-@Document(collection = "roles")
+@Document(collection = "role")
 public class Role {
-   private Long id;
-   public Long getId() {
+	@Id
+   private String id;
+   public String getId() {
 	return id;
 }
-public void setId(Long id) {
+public void setId(String id) {
 	this.id = id;
 }
 public String getName() {
@@ -27,13 +29,8 @@ public Collection<Privilege> getPrivileges() {
 public void setPrivileges(Collection<Privilege> privileges) {
 	this.privileges = privileges;
 }
-public Collection<User> getUsers() {
-	return users;
-}
-public void setUsers(Collection<User> users) {
-	this.users = users;
-}
+
 private String name;
    private Collection<Privilege> privileges;   
-   private Collection<User> users;
+   
 }

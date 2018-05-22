@@ -11,7 +11,7 @@ public class Privilege {
 	@Id
 	public String id;
 	private String name;
-	private Collection<Role> roles;
+	
 	public String getId() {
 		return id;
 	}
@@ -24,10 +24,5 @@ public class Privilege {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Collection<Role> getRoles() {
-		return roles;
-	}
-	public void setRoles(Collection<Role> roles) {
-		this.roles = roles;
-	}
+	
 }

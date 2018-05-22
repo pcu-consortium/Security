@@ -2,9 +2,14 @@ package com.armadillo.api.security.model;
 
 import java.util.Collection;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection = "user")
 public class User {
-  
-    private Long id;
+	@Id
+    private String id;
  
     private String firstName;
     private String lastName;
@@ -12,11 +17,12 @@ public class User {
     private String password;
     private boolean enabled;
     private boolean tokenExpired;
+    private String token;
     private Collection<Role> roles;
-   public Long getId() {
+   public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getFirstName() {
@@ -60,6 +66,13 @@ public class User {
 	}
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
+	}
+	 public String getToken() {
+	        return token;
+	    }
+
+	    public void setToken(final String token) {
+	        this.token = token;
 	}
 
 }
