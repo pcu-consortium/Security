@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.armadillo.api.security.dao.PrivilegeRepository;
 import com.armadillo.api.security.dao.RoleRepository;
+import com.armadillo.api.security.dao.TemplateRepository;
 import com.armadillo.api.security.dao.UserRepository;
 import com.armadillo.api.security.model.Privilege;
 import com.armadillo.api.security.model.Role;
+import com.armadillo.api.security.model.Template;
 import com.armadillo.api.security.model.User;
 
 
@@ -42,6 +44,9 @@ private PrivilegeRepository privilegeRepository;
 
 @Autowired
 private RoleRepository roleRepository;
+
+@Autowired
+private TemplateRepository templateRepository;
 
 /*
 @PostMapping(path="/users",consumes=MediaType.APPLICATION_JSON_VALUE)
@@ -186,6 +191,53 @@ public String deleteRole(@PathVariable String id) {
 	roleRepository.deleteById(id);
 	return "done";
 }
+/*
+ * Template
+ */
+
+
+@PostMapping(path="/templates")
+public String createTemplate(@RequestBody Template Tp){
+	templateRepository.save(Tp);
+	return "done";
+}
+@PutMapping("/roles/{id}")
+public ResponseEntity<Object> updateTemplate(@RequestBody Template Tp,@PathVariable String id){
+	Optional<Template> tpOptional =templateRepository.findById(id);
+	if(!tpOptional.isPresent())
+		return ResponseEntity.notFound().build();
+	Tp.setId(id);
+	templateRepository.save(Tp);
+	return ResponseEntity.noContent().build();
+}
+
+
+@GetMapping("/templates/all")
+public List<Template> getTtemplates(){	
+	List<Template> Tps=templateRepository.findAll();
+	if (Tps.size()>0)
+     	return Tps;
+	else
+		return null;
+}
+
+
+@GetMapping("/templates/{id}")
+public ResponseEntity<Optional<Template>> getTemplateById(@PathVariable String id){
+	Optional<Template> tp =templateRepository.findById(id);
+	if(!tp.isPresent())
+		{return ResponseEntity.notFound().build();}
+	else {return new ResponseEntity<>(tp,HttpStatus.OK);}
+}
+
+@DeleteMapping("/templates/{id}")
+public String deleteTemplate(@PathVariable String id) {
+	templateRepository.deleteById(id);
+	return "done";
+}
+
+
+
 
 
 

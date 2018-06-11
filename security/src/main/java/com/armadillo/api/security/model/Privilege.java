@@ -10,7 +10,14 @@ public class Privilege {
 	
 	@Id
 	public String id;
+	public Collection<Template> getTemplates() {
+		return templates;
+	}
+	public void setTemplates(Collection<Template> templates) {
+		this.templates = templates;
+	}
 	private String name;
+	private Collection<Template> templates;  
 	
 	public String getId() {
 		return id;
