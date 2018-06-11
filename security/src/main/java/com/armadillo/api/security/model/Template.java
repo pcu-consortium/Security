@@ -1,5 +1,7 @@
 package com.armadillo.api.security.model;
 
+import java.util.Collection;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,6 +10,7 @@ public class Template {
 	@Id
 	public String id;
 	private String label;
+	
 	
 	public String getId() {
 		return id;
